@@ -198,7 +198,7 @@ def optim_synthesis(args):
     if save:
         if not isdir(saving_folder):
             mkdir(saving_folder)
-        imsave(saving_folder+paramstr+'original.png', target_img)
+        imsave(saving_folder+'original.png', target_img)
 
     # Create Gaussian Pyramid downsamplers
     target_downsampler = create_gaussian_pyramid(gaussian_kernel_size, gaussian_std, n_scales, stride, pad=False)                  
@@ -391,9 +391,9 @@ def learn_model(args):
         plt.show()
         plt.pause(0.01)
         if save:
-            plt.savefig(saving_folder+'loss'+paramstr+'.png')
+            plt.savefig(saving_folder+'loss.png')
         plt.close()
     if save:
-        np.save(saving_folder+'loss'+paramstr+'.npy', total_loss)
+        np.save(saving_folder+'loss.npy', total_loss)
         
     return G
