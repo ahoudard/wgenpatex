@@ -83,19 +83,9 @@ class generator(nn.Module):
 # Function to generate an output sample
 def sample_fake_img(G, size, n_samples=1):
     # dimension of the first input noise
-    strow = int(np.ceil(size[2]-2)/2**G.nlayers)
-    stcol = int(np.ceil(size[3]-2)/2**G.nlayers)
+    strow = int(np.ceil(size[2])/2**G.nlayers)
+    stcol = int(np.ceil(size[3])/2**G.nlayers)
     # input noise and forward pass
     ztab = [torch.rand(n_samples, G.ch_in, 8+2**k*strow+4*int(k!=0), 8+2**k*stcol+4*int(k!=0), device=DEVICE, dtype=torch.float) for k in range(0, G.nlayers+1)]
     Z = [Variable(z) for z in ztab]
     return G(Z)
-
-#def sample_fake_img(G, target_size, n_samples=1):
-#    sample_size = max(2**(np.ceil(np.log2(target_size[2]))), 2**G.nlayers)
-#    print(sample_size)
-#    zk = [torch.rand(n_samples,G.ch_in, int(sample_size/(2**k)), int(sample_size/(2**k)), device=DEVICE, dtype=torch.float) for k in range(0, G.nlayers+1)]
-#    print(zk)
-#    for z in zk:
-#        print(z.shape)
-#    Z = [Variable(z) for z in zk ]
-#    return G(Z)
