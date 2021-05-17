@@ -262,13 +262,13 @@ def optim_synthesis(args):
     
         # save some results
         if it % monitoring_step == 0:
-            print('iteration '+str(it)+' - elapsed '+str(time.time()-t)+'s - loss = '+str(tloss))
+            print('iteration '+str(it)+' - elapsed '+str(int(time.time()-t))+'s - loss = '+str(tloss))
             if visu:
                 imshow(fake_img)
             if save:
                 imsave(saving_folder+'it'+str(it)+'.png', fake_img)
 
-    print('DONE - total time is '+str(time.time()-t)+'s')
+    print('DONE - total time is '+str(int(time.time()-t))+'s')
 
     if visu:
         plt.plot(total_loss)
@@ -378,13 +378,13 @@ def learn_model(args):
     
         # save some results
         if it % monitoring_step == 0:
-            print('iteration '+str(it)+' - elapsed '+str(time.time()-t)+'s - loss = '+str(tloss.item()))
+            print('iteration '+str(it)+' - elapsed '+str(int(time.time()-t))+'s - loss = '+str(tloss.item()))
             if visu:
                 imshow(fake_img)
             if save:
                 imsave(saving_folder+'it'+str(it)+'.png', fake_img)
 
-    print('DONE - total time is '+str(time.time()-t)+'s')
+    print('DONE - total time is '+str(int(time.time()-t))+'s')
 
     if visu:
         plt.plot(total_loss)
