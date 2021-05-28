@@ -85,9 +85,9 @@ class semidual(nn.Module):
     """
     Computes the semi-dual loss between inputy and inputx for the dual variable psi
     """    
-    def __init__(self, inputy, usekeops=False):
+    def __init__(self, inputy, device=DEVICE, usekeops=False):
         super(semidual, self).__init__()        
-        self.psi = nn.Parameter(torch.zeros(inputy.shape[0], device=DEVICE))
+        self.psi = nn.Parameter(torch.zeros(inputy.shape[0], device=device))
         self.yt = inputy.transpose(1,0)
         self.usekeops = usekeops
         self.y2 = torch.sum(self.yt **2,0,keepdim=True)
