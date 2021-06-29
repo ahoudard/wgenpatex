@@ -213,7 +213,7 @@ def optim_synthesis(args):
     semidual_loss = []
     for s in range(n_scales):
         real_data = target_im2pat(target_downsampler[s].down_img, n_patches_out) # exctract at most n_patches_out patches from the downsampled target images 
-        layer = semidual(real_data, usekeops)
+        layer = semidual(real_data, device=DEVICE, usekeops=usekeops)
         semidual_loss.append(layer)
         if visu:
             imshow(target_downsampler[s].down_img)
